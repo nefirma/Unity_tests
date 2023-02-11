@@ -14,8 +14,8 @@ Shader "Custom/FlagScrollingSurface" {
 
         Pass {
             CGPROGRAM
-            #pragma vertex vert
-            #pragma fragment frag
+            #pragma vertex vert // allows the be compiled by GPU as a vertex shader
+            #pragma fragment frag // the same as above, but for a fragment shader
             #include "UnityCG.cginc"
 
             struct appdata {

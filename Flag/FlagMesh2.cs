@@ -1,8 +1,7 @@
-//This script make a new, square mesh and apply a custom texture. No animation
-
+//This script make a new, square mesh. Applied custom texture and animate as "waving flag". No GPU shaders
 using UnityEngine;
 
-public class FlagMesh : MonoBehaviour
+public class FlagMesh2 : MonoBehaviour
 {
     public int horizontalVertices = 10;
     public int verticalVertices = 10;
@@ -10,13 +9,19 @@ public class FlagMesh : MonoBehaviour
     public float width = 10f;
     public float height = 5f;
 
-    void Start()
+    private Vector3[] vertices;
+    public float waveSpeed = 0.1f;
+    public float waveFrequency = 2f;
+    public float waveHeight = 0.5f;
+    private Mesh mesh;
+
+    private void Start()
     {
         MeshFilter meshFilter = GetComponent<MeshFilter>();
-        Mesh mesh = new Mesh();
+        mesh = new Mesh();
         meshFilter.mesh = mesh;
 
-        Vector3[] vertices = new Vector3[(horizontalVertices + 1) * (verticalVertices + 1)];
+        vertices = new Vector3[(horizontalVertices + 1) * (verticalVertices + 1)];
         Vector2[] uv = new Vector2[vertices.Length];
         int[] triangles = new int[horizontalVertices * verticalVertices * 6];
 
@@ -46,6 +51,18 @@ public class FlagMesh : MonoBehaviour
         mesh.vertices = vertices;
         mesh.uv = uv;
         mesh.triangles = triangles;
+        mesh.RecalculateNormals();
+
+    }
+
+    private void Update()
+    {
+        for (int i = 0; i < vertices.Length; i++)
+        {
+            float z = waveHeight * Mathf.Sin(Time.time * waveSpeed + (vertices[i].x + transform.position.x) * waveFrequency);
+            vertices[i].z = z;
+        }
+        mesh.vertices = vertices;
         mesh.RecalculateNormals();
     }
 }
