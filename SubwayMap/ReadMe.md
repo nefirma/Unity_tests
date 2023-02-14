@@ -7,4 +7,4 @@ Based on the developed structure, create an algorithm that searches for the shor
 For each path found, it is necessary to indicate the number of transfers while moving along the route.
 
 # DEMO
-![demo](/Flag/waving_flag1.gif)
+![demo](subwayMap_demo_nefirma.gif)
