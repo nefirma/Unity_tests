@@ -124,7 +124,7 @@ public class SpaceshipController : MonoBehaviour
         {
             dropdown.gameObject.SetActive(true);
         }
-        
+
         CheckModules();
     }
 
@@ -200,6 +200,8 @@ public class SpaceshipController : MonoBehaviour
             health.currentShield = health.maxShield;
             health.shieldRecoverySpeedMod = health.baseShieldRecoverySpeed;
             health.shieldObjectOn.SetActive(true);
+            health.shieldObject.SetActive(true);
+            health.shieldOn = true;
         }
         foreach (Weapon weapon in activeWeapons)
         {

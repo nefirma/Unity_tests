@@ -17,7 +17,6 @@ public class Health : MonoBehaviour
     public GameObject shieldObject;
     public GameObject shieldObjectOn;
     public GameObject shieldObjectGlow;
-    // public GameObject hitGlow;
 
     public float shieldRecoverySpeedMod; // модификатор скорости восстановления щита
     public float baseHealth; // базовое здоровье корабля без модулей
@@ -65,11 +64,9 @@ public class Health : MonoBehaviour
 
         currentHealth -= damage;
 
-        if (currentHealth <= 1)
-        {
-            currentHealth = 0;
-            Die();
-        }
+        if (!(currentHealth <= 1)) return;
+        currentHealth = 0;
+        Die();
     }
 
     public void TakeShieldDamage(float damage)
